@@ -31,12 +31,15 @@ public class TicTacToe {
                 //System.out.println("Turn: O");
               }
               if (checkWin(board) == 3) {
-                System.out.println("X wins");
+                System.out.println("X wins!");
                 break;
               }
               else if (checkWin(board) == -3) {
-                System.out.println("O wins");
+                System.out.println("O wins!");
                 break;
+              }
+              if (i == 8) {
+                  System.out.println("Game was a tie! Play again sometime soon.");
               }
             }
              
@@ -99,8 +102,14 @@ public class TicTacToe {
       int[] spot = new int[2];
       while (true) {
         System.out.print("pick a row and column number: ");
-        spot[0] = scan.nextInt();
-        spot[1] = scan.nextInt();
+        String row = scan.next(), column = scan.next();
+        if (!row.matches("[0-2]") || !column.matches("[0-2]") || row.length() > 1 || column.length() > 1) { //added to stop anything other than correct coordinates being inputted
+            System.out.println("Please enter a number between 0 and 2");
+            continue;
+        }
+        
+        spot[0] = Integer.parseInt(row);
+        spot[1] = Integer.parseInt(column);
         if (board[spot[0]][spot[1]] == '_') {
           return spot;
         }
@@ -187,7 +196,7 @@ public class TicTacToe {
 
 
 
-      return 0;
+      return count;
     }
 
 
